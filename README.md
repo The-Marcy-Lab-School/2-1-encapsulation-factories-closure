@@ -10,7 +10,7 @@
 
 ## Intro to Mod 5: Object-Oriented Programming (OOP) — 5 minutes
 
-Object-Oriented Programming is a style of programming (a "paradigm") that uses **objects to manage state (data) and behavior** in an application.
+Object-Oriented Programming is a style of programming (a "paradigm") that uses **objects to manage state (data) and behavior** in an application. While OOP does let us do some new things, more than anything, it helps us write better, more organized code.
 
 It can be defined by its 4 pillars:
 * **Encapsulation** - every object should control its own state
@@ -58,14 +58,16 @@ In OOP, we store data in objects and give those obejcts methods to manipulate th
 ```js
 // Object Oriented Programming encapsulates data with functionality
 const friendsManager = {
-  friends: ['ahmad', 'brandon', 'carmen'],
+  friends: [],
   addFriend(newFriend) {
     this.friends.push(newFriend);
     // `this` refers to the "owner" of the method. 
   }
 }
 
-friendsManager.addFriend('dave');
+friendsManager.addFriend('ahmad');
+friendsManager.addFriend('brandon');
+friendsManager.addFriend('carmen');
 // Here, friendsManager is the owner of addFriend. 
 // this.friends === friendsManager.friends
 
@@ -90,7 +92,7 @@ Consider the `friendsManager` example again.
 
 ```js
 const friendsManager = {
-  friends: ['ahmad', 'brandon', 'carmen'],
+  friends: [],
   addFriend(newFriend) {
     // we've added this guard clause
     if (typeof newFriend !== 'string') return;
@@ -100,6 +102,7 @@ const friendsManager = {
 
 // What about this is NOT consistent or predictable?
 friendsManager.addFriend('daniel');
+friendsManager.addFriend(true);
 friendsManager.friends.push('emmaneul');
 friendsManager.friends.push(42);
 ```
@@ -126,7 +129,7 @@ To achieve consistency and predictability, we can change a few things:
 // A factory function
 const makeFriendsManager = () => {
   // this array is now "private"
-  const friends = ['ahmad', 'brandon', 'carmen'];
+  const friends = [];
 
   const friendsManager = {
     getFriends() {
@@ -146,7 +149,10 @@ const makeFriendsManager = () => {
 const myFriendsManager = makeFriendsManager();
 
 myFriendsManager.friends // undefined
-myFriendsManager.addFriend('daniel')
+friendsManager.addFriend('ahmad');
+friendsManager.addFriend('brandon');
+friendsManager.addFriend('carmen');
+friendsManager.addFriend(true);
 myFriendsManager.getFriends() // ['ahmad', 'brandon', 'carmen', 'daniel']
 ```
 
@@ -168,6 +174,8 @@ This approach takes advantage of the fact that `addFriend` and `getFriends()` cr
 ## Challenge
 
 Below is a `counter` object. The problem is that the `counter.value` property is not private — it can be directly mutated. Your challenge is to create a factory function `makeCounter` that will protect the value of the counter while still allowing us to `increment()`, `decrement()`, and get the current value of the counter.
+
+As a bonus, make the factory function accept an argument `startingValue` which sets the starting `value` of the counter. If no value is provided, start at `0`. Then make multiple counters, each starting at a different value.
 
 ```js
 // challenge.js
@@ -194,8 +202,8 @@ counter.value = 10; // BAD
 **<details><summary style="color: purple">Solution</summary>**
 
 > ```js
-> const makeCounter = () => {
->   let value = 0;
+> const makeCounter = (startingValue = 0) => {
+>   let value = startingValue;
 > 
 >   const counter = {  
 >     getValue() {
@@ -219,6 +227,9 @@ counter.value = 10; // BAD
 > counter.decrement();
 > console.log(counter.getValue()); // 1
 > console.log(counter.value); // undefined
+> 
+> const counterFrom5 = makeCounter(5);
+> console.log(counterFrom5.getValue()); // 5
 > ```
 
 </details><br>
