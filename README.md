@@ -239,7 +239,26 @@ counter.value = 10; // BAD
 * **Object-Oriented Programming (OOP)**: A programming paradigm that uses objects to manage state (data) and behavior in an application.
 * **Encapsulation**: A pillar of OOP that encourages bundling of data and the methods that act on that data into a single object
 * A **factory function** returns an object with a consistent and predictable structure.
-* A **closure** is when an "inner function" maintains references to variables in its surrounding scope (an "outer function").
+* A **closure** is created when an "inner function" references variables in its surrounding scope (an "outer function").
+  * The inner function "remembers" the value of the variables in the surrounding scope, even after the outer function returns.
 * Benefits of encapsulation with factory functions and closure:
   * We can create private variables
   * access to state is provided only through predicatable **getter/setter** methods
+
+```js
+const makeFriendsManager = (...initialFriends) => {
+  const friends = [...initialFriends];
+
+  const friendsManager = {
+    getFriends() {
+      return [...friends]; 
+    },
+    addFriend(newFriend) {
+      if (typeof newFriend !== 'string') return;
+      friends.push(newFriend);
+    }
+  }
+  return friendsManager;
+}
+const myFriendsManager = makeFriendsManager('ahmad', 'brandon', 'carmen');
+```
