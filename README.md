@@ -171,6 +171,35 @@ This approach takes advantage of the fact that `addFriend` and `getFriends()` cr
 > It creates and returns a new object.
 </details><br>
 
+## Quiz!
+
+Consider the functions below. Which of them creates a closure? How?
+
+```js
+const sayWordsLoudly = (words) => {
+  words.forEach((word) => console.log(`${word}!!!`));
+}
+
+const addRandomToNumbers = (nums) => {
+  const randomNum = Math.random();
+  return nums.map((num) => num + randomNum);
+}
+
+const addAmountToNumbers = (nums, amount) => {
+  return nums.map((num) => num + amount);
+}
+
+// This is an "IIFE" (Immediately Invoked Function Expression)
+const getId = ((id = 1) => () => id++)();
+```
+
+**<details><summary style="color: purple">Answer</summary>**
+> * The first function DOES NOT create a closure. Even though there is an inner arrow function defined, that function doesn't reference variables in the scope outside of it
+> * The second function DOES create a closure because the inner arrow function passed to `nums.map` references the `randomNum` variable in the scope outside of it.
+> * The third function DOES create a clsoure for the same reason as the function above. Referencing the parameter `amount` is the same. 
+> * The fourth function DOES create a closure because we have an outer arrow function returning an inner arrow function. The inner arrow function `() => id++` references the `id` parameter in the outer arrow function.
+</details><br>
+
 ## Challenge
 
 Below is a `counter` object. The problem is that the `counter.value` property is not private — it can be directly mutated. Your challenge is to create a factory function `makeCounter` that will protect the value of the counter while still allowing us to `increment()`, `decrement()`, and get the current value of the counter.
