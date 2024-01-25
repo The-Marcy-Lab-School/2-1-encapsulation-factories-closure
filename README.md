@@ -55,15 +55,13 @@ const friendsManager = {
 friendsManager.addFriend('ahmad');
 friendsManager.addFriend('brandon');
 friendsManager.addFriend('carmen');
-// Here, friendsManager is the owner of addFriend. 
-// this.friends === friendsManager.friends
+// Here, friendsManager invokes addFriend so this === friendsManager
 
 console.log(friendsManager.friends)
 ```
 **Side Note on `this`**:
-* it is one of the most complicated topics in JavaScript. 
-* For now, we'll define it vaguely as a reference to the object that "owns" a method. 
-* It allows an object's methods to access that object's own values.
+* When used as method of an object, **`this` refers to the object that invokes the method.**
+* `this` is one of the most complicated topics in JavaScript. Check out this video to learn more: [JavaScript this Keyword](https://www.youtube.com/watch?v=gvicrj31JOM&ab_channel=ProgrammingwithMosh).
 
 **<details><summary style="color: purple">Q: How does the `friendsManager` object demonstrate encapsulation compared to the first example? How does `this` enable encapsulation?</summary>**
 
@@ -160,6 +158,28 @@ The cool thing about closures is that each time we invoke this function, we will
 
 </details><br>
 
+**<details><summary style="color: purple">Q: How can we modify the example above to be able to create a new friend manager with a starting set of `friends` as an argument?</summary>**
+
+> ```js
+> const makeFriendsManager = (...initialFriends) => {
+>   const friends = [...initialFriends];
+> 
+>   const friendsManager = {
+>     getFriends() {
+>       return [...friends]; 
+>     },
+>     addFriend(newFriend) {
+>       if (typeof newFriend !== 'string') return;
+>       friends.push(newFriend);
+>     }
+>   }
+>   return friendsManager;
+> }
+> const myFriendsManager = makeFriendsManager('ahmad', 'brandon', 'carmen');
+> ```
+
+</details><br>
+
 ## Quiz!
 
 We've seen closures before in non-object-oriented contexts. Consider the functions below. Which of them creates a closure? How?
@@ -191,9 +211,9 @@ const getId = ((id = 1) => () => id++)();
 
 ## Challenge
 
-Below is a `counter` object. The problem is that the `counter.value` property is not private — it can be directly mutated. Your challenge is to create a factory function `makeCounter` that will protect the value of the counter while still allowing us to `increment()`, `decrement()`, and get the current value of the counter.
+Below is a `counter` object. The problem is that the `counter.value` property is not private — it can be directly mutated. Your challenge is to create a function `makeCounter` that will protect the value of the counter while still allowing us to `increment()`, `decrement()`, and get the current value of the counter.
 
-As a bonus, make the factory function accept an argument `startingValue` which sets the starting `value` of the counter. If no value is provided, start at `0`. Then make multiple counters, each starting at a different value.
+As a bonus, make the function accept an argument `startingValue` which sets the starting `value` of the counter. If no value is provided, start at `0`. Then make multiple counters, each starting at a different value.
 
 ```js
 // challenge.js
@@ -256,10 +276,10 @@ counter.value = 10; // BAD
 
 * **Object-Oriented Programming (OOP)**: A programming paradigm that uses objects to manage state (data) and behavior in an application.
 * **Encapsulation**: A pillar of OOP that encourages bundling of data and the methods that act on that data into a single object
-* A **factory function** returns an object with a consistent and predictable structure.
 * A **closure** is created when an "inner function" references variables in its surrounding scope (an "outer function").
   * The inner function "remembers" the value of the variables in the surrounding scope, even after the outer function returns.
-* Benefits of encapsulation with factory functions and closure:
+  * Each **instance** of the outer function creates a new closure.
+* Benefits of Encapsulation:
   * We can create private variables
   * access to state is provided only through predicatable **getter/setter** methods
 
@@ -278,5 +298,12 @@ const makeFriendsManager = (...initialFriends) => {
   }
   return friendsManager;
 }
-const myFriendsManager = makeFriendsManager('ahmad', 'brandon', 'carmen');
+
+const bensFriendsManager = makeFriendsManager('zo', 'motun');
+const gonzalosFriendsManager = makeFriendsManager();
+gonzalosFriendsManager.addFriend('carmen');
+
+// each instance will maintain its own list of friends
+console.log(bensFriendsManager.getFriends()) // ['zo', 'motun']
+console.log(gonzalosFriendsManager.getFriends()) // ['carmen']
 ```
