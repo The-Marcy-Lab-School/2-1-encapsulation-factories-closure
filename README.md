@@ -1,14 +1,13 @@
 # Closures
 
+
 - [Intro to Mod 5: Object-Oriented Programming (OOP) — 5 minutes](#intro-to-mod-5-object-oriented-programming-oop--5-minutes)
 - [Encapsulation — 15 minutes](#encapsulation--15-minutes)
-- [Consistency \& Predictability — 5 minutes](#consistency--predictability--5-minutes)
+- [Designing A Consistent \& Predictable Interface — 5 minutes](#designing-a-consistent--predictable-interface--5-minutes)
 - [Factory Functions, Privacy, \& Closures — 30 minutes](#factory-functions-privacy--closures--30-minutes)
 - [Quiz!](#quiz)
 - [Challenge](#challenge)
 - [Summary](#summary)
-
-
 
 ## Intro to Mod 5: Object-Oriented Programming (OOP) — 5 minutes
 
@@ -71,7 +70,7 @@ console.log(friendsManager.friends)
 
 </details><br>
 
-## Consistency & Predictability — 5 minutes
+## Designing A Consistent & Predictable Interface — 5 minutes
 
 **Consistency** and **predictability** are major goals in software engineering. This is what motivates us to write pure functions in functional programming. It is just as important in OOP.
 
@@ -276,6 +275,7 @@ counter.value = 10; // BAD
 
 * **Object-Oriented Programming (OOP)**: A programming paradigm that uses objects to manage state (data) and behavior in an application.
 * **Encapsulation**: A pillar of OOP that encourages bundling of data and the methods that act on that data into a single object
+* When used as method of an object, **`this` refers to the object that invokes the method.**
 * A **closure** is created when an "inner function" references variables in its surrounding scope (an "outer function").
   * The inner function "remembers" the value of the variables in the surrounding scope, even after the outer function returns.
   * Each **instance** of the outer function creates a new closure.
