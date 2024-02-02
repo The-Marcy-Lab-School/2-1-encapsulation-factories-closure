@@ -14,7 +14,7 @@
 Object-Oriented Programming is a style of programming (a "paradigm") that uses **objects to manage state (data) and behavior** in an application. While OOP does let us do some new things, more than anything, it helps us write better, more organized code.
 
 It can be defined by its 4 pillars:
-* **Encapsulation** - every object should control its own state
+* **Encapsulation** - bundling data and methods into a single unit while protecting the data
 * **Abstraction** - hiding complexity through functions and prototypes
 * **Inheritance** - sharing behavior between objects
 * **Polymorphism** - similar objects can be used interchangeably
@@ -274,7 +274,7 @@ counter.value = 10; // BAD
 ## Summary
 
 * **Object-Oriented Programming (OOP)**: A programming paradigm that uses objects to manage state (data) and behavior in an application.
-* **Encapsulation**: A pillar of OOP that encourages bundling of data and the methods that act on that data into a single object
+* **Encapsulation**: Bundling data and methods into a single unit while protecting the data
 * When used as method of an object, **`this` refers to the object that invokes the method.**
 * A **closure** is created when an "inner function" references variables in its surrounding scope (an "outer function").
   * The inner function "remembers" the value of the variables in the surrounding scope, even after the outer function returns.
