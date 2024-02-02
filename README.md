@@ -25,7 +25,7 @@ Throughout this module, we will be learning about these four pillars and how we 
 
 ## Encapsulation — 15 minutes
 
-In functional programming, we separate data from the functions that act on them. We achieve **consistency** & **predicatability** through pure functions.
+In functional programming, we separate data from the functions that act on them. We achieve **consistency** & **predictability** through pure functions.
 
 ```js
 // Functional Programming separates data from functionality
@@ -39,7 +39,7 @@ const addFriend = (friends, newFriend) => {
 const newFriends = addFriend(friends, 'daniel');
 ```
 
-In OOP, we store data in objects and give those obejcts methods to manipulate their own data. This is called **encapsulation**.
+In OOP, we store data in objects and give those objects methods to manipulate their own data. This is called **encapsulation**.
 
 ```js
 // Object Oriented Programming encapsulates data with functionality
