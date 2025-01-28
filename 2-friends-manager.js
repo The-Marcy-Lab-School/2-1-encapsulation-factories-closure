@@ -1,21 +1,4 @@
 /* 
-Functional Programming separates data from functionality
-*/
-const friends = ['ahmad', 'brandon', 'carmen'];
-
-const getUpdatedFriendList = (friends, newFriend) => {
-  const newList = [...friends, newFriend]; // keep it pure, make a new list
-  return newList;
-}
-
-const newFriends = getUpdatedFriendList(friends, 'deema');
-console.log(friends);
-console.log(newFriends);
-
-
-
-
-/* 
 Object Oriented Programming encapsulates data with functionality
 */
 const friendsManager = {
@@ -38,16 +21,3 @@ friendsManager.addFriend('daniel');
 friendsManager.addFriend(true);
 friendsManager.friends.push('emmaneul');
 friendsManager.friends.push(42);
-
-
-
-
-
-/* 
-A factory function makes and returns an object
-Allows us to use closure.
-*/
-const makeFriendsManager = () => {
-
-}
-const myFriendsManager = makeFriendsManager();
