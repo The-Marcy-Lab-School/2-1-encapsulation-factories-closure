@@ -9,7 +9,9 @@ const makeFriendsManager = () => {
 
   const friendsManager = {
     addFriend(newFriend) {
-      if (typeof newFriend !== 'string') return;
+      if (typeof newFriend !== 'string') {
+        throw Error('new friends must be strings');
+      };
       friends.push(newFriend);
     },
     printFriends() {
