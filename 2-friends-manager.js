@@ -4,6 +4,10 @@ Object Oriented Programming encapsulates data with functionality
 const friendsManager = {
   friends: [],
   addFriend(newFriend) {
+    if (typeof newFriend !== 'string') {
+      throw Error('new friends must be strings');
+    };
+    
     this.friends.push(newFriend);
     // `this` refers to the "owner" of the method. 
   }
