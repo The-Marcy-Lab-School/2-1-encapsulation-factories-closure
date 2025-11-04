@@ -15,7 +15,7 @@ const makeFriendsManager = (username) => {
       friends.push(newFriend);
     },
     printFriends() {
-      this.friends.forEach((friend) => {
+      friends.forEach((friend) => {
         console.log(`${this.username} is friends with ${friend}`);
       });
     },
